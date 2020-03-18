@@ -23,16 +23,16 @@ void led_update(){
       toggle();
     }
 
-    if (sw2_down) {
+    else if (sw2_down) {
       // Have LEDS flicker or glow
     }
 
-    if (sw3_down) {
+    else if (sw3_down) {
       // Have LEDS turn green for correct answer red for wrong answer
     }
 
-    if (sw4_down) {
-      // clear/turn off LEDS
+    else if (sw4_down) {
+ 
     }
     
     char ledFlags = greenVal[green_on] | redVal[red_on];

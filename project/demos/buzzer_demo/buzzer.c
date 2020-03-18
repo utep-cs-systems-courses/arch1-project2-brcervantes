@@ -2,6 +2,8 @@
 #include "libTimer.h"
 #include "buzzer.h"
 
+short frequency = 0;
+
 void buzzer_init()
 {
     /* 

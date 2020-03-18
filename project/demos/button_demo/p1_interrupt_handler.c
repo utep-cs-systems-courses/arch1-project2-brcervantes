@@ -1,5 +1,6 @@
 #include <msp430.h>
 #include "switches.h"
+#include "buzzer.h"
 
 /* Switch on P2 (S2) */
 void __interrupt_vec(PORT2_VECTOR) Port_2() {
@@ -10,11 +11,16 @@ void __interrupt_vec(PORT2_VECTOR) Port_2() {
   
 }
 
-void __interrupt_vec(WDT_VECTOR) WDT(char duration) {
+void __interrupt_vec(WDT_VECTOR) WDT() {
   static char count = 0;
-  if (++count == duration) {
-    advance_song();
-    count = 0; 
+  if (++count == 1000) {
+    int i = 0;
+    
+    while (i < delay) {
+      buzzer_set_period(0);
+      i++;
+      
+    }
   }
 }
 

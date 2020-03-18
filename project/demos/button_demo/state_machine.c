@@ -2,9 +2,9 @@
 #include "state_machine.h"
 #include "led.h"
 
+unsigned char state = 0;
 
 void toggle() {
-  static char state = 0;
 
   switch (state) {
 

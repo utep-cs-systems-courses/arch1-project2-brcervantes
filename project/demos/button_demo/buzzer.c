@@ -3,6 +3,8 @@
 #include "buzzer.h"
 
 short frequency = 0;
+int delay= 0;
+int duration = 0;
 
 void buzzer_init()
 {
@@ -28,11 +30,29 @@ void buzzer_set_period(short cycles) /* buzzer clock = 2MHz.  (period of 1k resu
 
 void play_song()
 {
-  short freq_table[12] = {2093, 2217, 2349, 2489, 2637, 2794, 2960, 3136, 3322, 3520, 3729, 3951};
+  short notes[43] = {D5, F5, D6, D5, F5, D6, E6, F6, E6, F6, E6, C6, A5, A5, D5, F5, G5, A5, A5,
+		     D5, F5, G5, E5, D5, F5, D6, D5, F5, D6, E6, F6, E6, F6, E6, C6, A5, A5, D5,
+		     F5, G5, A5, A5, D5};
 
-  while (1) {
-    buzzer_set_period();
-    
+  int note_duration[43] = {100, 100, 200, 100, 100, 200, 200, 100, 100, 100, 100, 100, 100, 200,
+			  200, 100, 100, 100, 200, 200, 100, 100, 100, 100, 100, 200, 100, 100,
+			  200, 200, 100, 100, 100, 100, 100, 100, 200, 200, 100, 100, 300, 200,
+			  300};
+
+  int delay_time[43] = {80, 80, 250, 80, 80, 250, 200, 100, 80, 80, 80, 80, 300, 100, 100, 100,
+			100, 500, 100, 100, 100, 100, 500, 80, 80, 250, 80, 80, 250, 200, 100, 80,
+			80, 80, 80, 300, 100, 100, 100, 100, 100, 100, 2000};
+
+  int i;
+  for (i = 0; i < 43; i++) {
+    duration = note_duration[i];
+
+    int j;
+    for (j = 0; j < duration; j++) {
+      buzzer_set_period((short)notes[i]);
+    }
+    delay = delay_time[i];
+   
   }
 }
 

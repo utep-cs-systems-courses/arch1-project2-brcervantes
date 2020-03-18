@@ -3,4 +3,6 @@
 
 void toggle();
 
+extern unsigned char state;
+
 #endif // included

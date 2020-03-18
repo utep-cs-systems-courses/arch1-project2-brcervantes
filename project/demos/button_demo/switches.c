@@ -28,8 +28,8 @@ void switch_init()			/* setup switch */
 void switch_interrupt_handler()
 {
   char p2val = switch_update_interrupt_sense();
-  sw1_down = (p2val & SW1) ? 0 : 1; /* 0 when SW1 is up */
-  sw2_down = (p2val & SW2) ? 0 : 1;
+  sw1_down = (p2val & SW1) ? 0 : 1; /* 0 when Switch is up */
+  sw2_down = (p2val & SW2) ? 0 : 1; 
   sw3_down = (p2val & SW3) ? 0 : 1;
   sw4_down = (p2val & SW4) ? 0 : 1;
   switch_state_changed = 1;
@@ -39,18 +39,19 @@ void switch_interrupt_handler()
     led_update();
   }
 
-  if (sw2_down) {
+  else if (sw2_down) {
     // play zelda melody
     play_song();
   }
 
-  if (sw3_down) {
+  else if (sw3_down) {
     // play simon says
+    led_update();
   }
 
-  if (sw4_down) {
+  else if (sw4_down) {
     // turn off buzzer
-    frequency = 0;
-    buzzer_set_period(frequency);
+    buzzer_set_period(0);
+    led_update();
   }
 }
