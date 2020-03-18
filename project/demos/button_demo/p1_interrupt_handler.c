@@ -13,7 +13,7 @@ void __interrupt_vec(PORT2_VECTOR) Port_2() {
 
 void __interrupt_vec(WDT_VECTOR) WDT() {
   static char count = 0;
-  if (++count == 1000) {
+  if (++count == 100) {
     int i = 0;
     
     while (i < delay) {
