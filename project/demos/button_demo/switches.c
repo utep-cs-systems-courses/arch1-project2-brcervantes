@@ -2,6 +2,7 @@
 #include "switches.h"
 #include "led.h"
 #include "buzzer.h"
+#include "state_machine.h"
 
 //booleans
 char sw1_down, sw2_down, sw3_down, sw4_down, switch_state_changed; 
@@ -37,21 +38,23 @@ void switch_interrupt_handler()
   if (sw1_down) {
     // count to 3 binary
     led_update();
+    toggle();
   }
 
   else if (sw2_down) {
     // play zelda melody
     play_song();
+    led_update();
   }
 
   else if (sw3_down) {
-    // play simon says
     led_update();
   }
 
   else if (sw4_down) {
     // turn off buzzer
     buzzer_set_period(0);
+    reset_state();
     led_update();
   }
 }

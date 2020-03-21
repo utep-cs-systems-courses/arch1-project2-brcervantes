@@ -16,9 +16,8 @@ void led_init()
 }
 
 void led_update(){
-  if (switch_state_changed) {
-    
-    if (sw1_down) {
+  if (switch_state_changed) {    
+    /*if (sw1_down) {      
       // call state machine count to 3 in binary
       toggle();
     }
@@ -28,12 +27,15 @@ void led_update(){
     }
 
     else if (sw3_down) {
-      // Have LEDS turn green for correct answer red for wrong answer
+      
     }
 
     else if (sw4_down) {
- 
-    }
+      state = 0;
+      red_on = 0;
+      green_on = 0;
+    }*/
+
     
     char ledFlags = greenVal[green_on] | redVal[red_on];
     
@@ -42,5 +44,6 @@ void led_update(){
   }
   switch_state_changed = 0;
 }
+
 
 

@@ -1,11 +1,13 @@
 #include <msp430.h>
+#include <stdlib.h>
 #include "state_machine.h"
 #include "led.h"
 
-unsigned char state = 0;
 
 void toggle() {
 
+  static char state = 0;
+  
   switch (state) {
 
   case 0:
@@ -33,4 +35,10 @@ void toggle() {
     break;
   }
 }
+
+void reset_state() {
+  red_on = 0;
+  green_on = 0;
+}
+
 

@@ -2,7 +2,6 @@
 #define stateMachine_included
 
 void toggle();
-
-extern unsigned char state;
+void reset_state();
 
 #endif // included

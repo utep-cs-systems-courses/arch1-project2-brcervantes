@@ -28,9 +28,10 @@ void buzzer_set_period(short cycles) /* buzzer clock = 2MHz.  (period of 1k resu
   CCR1 = cycles >> 1;		/* one half cycle */
 }
 
+
 void play_song()
 {
-  short notes[43] = {D5, F5, D6, D5, F5, D6, E6, F6, E6, F6, E6, C6, A5, A5, D5, F5, G5, A5, A5,
+  int notes[43] = {D5, F5, D6, D5, F5, D6, E6, F6, E6, F6, E6, C6, A5, A5, D5, F5, G5, A5, A5,
 		     D5, F5, G5, E5, D5, F5, D6, D5, F5, D6, E6, F6, E6, F6, E6, C6, A5, A5, D5,
 		     F5, G5, A5, A5, D5};
 
@@ -43,17 +44,23 @@ void play_song()
 			100, 500, 100, 100, 100, 100, 500, 80, 80, 250, 80, 80, 250, 200, 100, 80,
 			80, 80, 80, 300, 100, 100, 100, 100, 100, 100, 2000};
 
-  int i;
-  for (i = 0; i < 43; i++) {
-    duration = note_duration[i];
+  duration = 100; 
+  delay = 80;
+  buzzer_set_period(D5);
 
-    int j;
-    for (j = 0; j < duration; j++) {
-      buzzer_set_period((short)notes[i]);
-    }
-    delay = delay_time[i];
-   
-  }
+  duration = 100;
+  delay = 80;
+  buzzer_set_period(F5);
+
+  duration = 200;
+  delay = 250;
+  buzzer_set_period(D6);
+
+  duration = 100;
+  buzzer_set_period(D5);
+  duration = 100;
+  delay = 80;
+
 }
 
 
