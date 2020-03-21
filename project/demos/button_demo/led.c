@@ -17,25 +17,6 @@ void led_init()
 
 void led_update(){
   if (switch_state_changed) {    
-    /*if (sw1_down) {      
-      // call state machine count to 3 in binary
-      toggle();
-    }
-
-    else if (sw2_down) {
-      // Have LEDS flicker or glow
-    }
-
-    else if (sw3_down) {
-      
-    }
-
-    else if (sw4_down) {
-      state = 0;
-      red_on = 0;
-      green_on = 0;
-    }*/
-
     
     char ledFlags = greenVal[green_on] | redVal[red_on];
     
