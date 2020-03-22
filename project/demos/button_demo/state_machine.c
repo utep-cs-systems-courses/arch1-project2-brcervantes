@@ -39,6 +39,15 @@ void toggle() {
 void reset_state() {
   red_on = 0;
   green_on = 0;
+  led_update();
 }
+
+void led_state(unsigned char g, unsigned char r) {
+  green_on = g;
+  red_on = r;
+  led_changed = 1;
+  led_update();
+}
+
 
 

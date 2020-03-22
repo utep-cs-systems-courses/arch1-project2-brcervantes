@@ -3,6 +3,7 @@
 #include "led.h"
 #include "switches.h"
 #include "buzzer.h"
+#include "state_machine.h"
 
 void main(void) 
 {  
@@ -10,7 +11,8 @@ void main(void)
   switch_init();
   led_init();
   buzzer_init();
-  buzzer_set_period(frequency);
+  reset_state();
+  enableWDTInterrupts();
 
   or_sr(0x18);  // CPU off, GIE on
 } 

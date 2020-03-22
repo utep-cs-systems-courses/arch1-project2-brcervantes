@@ -11,12 +11,12 @@
 #define G5 784
 #define E5 659
 
-extern short frequency;
-extern int delay;
-extern int duration;
+extern char play_song;
+extern int notes[43];
+extern int note_duration[43];
+extern int delay_time[43];
 
 void buzzer_init();
 void buzzer_set_period(short cycles);
-void play_song();
 
 #endif // included
