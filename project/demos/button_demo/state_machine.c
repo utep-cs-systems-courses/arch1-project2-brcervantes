@@ -2,8 +2,9 @@
 #include <stdlib.h>
 #include "state_machine.h"
 #include "led.h"
+#include "toggle.h"
 
-
+/*
 void toggle() {
 
   static char state = 0;
@@ -35,7 +36,7 @@ void toggle() {
     break;
   }
 }
-
+*/
 void reset_state() {
   red_on = 0;
   green_on = 0;

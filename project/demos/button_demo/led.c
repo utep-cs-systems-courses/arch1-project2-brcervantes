@@ -34,7 +34,7 @@ void led_update(){
   led_changed = 0;
   dim_on = 0;
 }
-
+/*
 void dim_led() {
   
   //WDTCTL = WDTPW +WDTHOLD;
@@ -70,3 +70,4 @@ __interrupt void Timer1_A0 (void) {
       IncDec_PWM = -IncDec_PWM;
   }
 }
+*/

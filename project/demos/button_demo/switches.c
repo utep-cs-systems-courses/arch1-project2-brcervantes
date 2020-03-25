@@ -3,6 +3,7 @@
 #include "led.h"
 #include "buzzer.h"
 #include "state_machine.h"
+#include "toggle.h"
 
 //booleans
 char sw1_down, sw2_down, sw3_down, sw4_down, switch_state_changed; 
@@ -51,7 +52,7 @@ void switch_interrupt_handler()
 
   else if (sw3_down) {
     dim_on = 1;
-    dim_led();
+    //dim_led();
   }
 
   else if (sw4_down) {
