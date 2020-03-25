@@ -14,13 +14,29 @@ void __interrupt_vec(PORT2_VECTOR) Port_2() {
 
 
 void __interrupt_vec(WDT_VECTOR) WDT() {
+  // variables for playing song
   static char count = 0;
-  static char note = 0;
+  static char note  = 0;
   static char delay = 0;
   static char make_noise = 0;
   static char time_until_change = 0;
 
-  if (play_song && note < 43) {
+  // variables for fading light
+  static char pwm_counter = 0;
+  static char led_bright  = 0;
+  static char target      = 0;
+  static char timer       = 0;
+  static char fade        = 0;
+
+  if (dim_on){
+    P1OUT ^= BIT0;
+    if (++timer == 3000-1) {
+      timer = 0;
+      P1OUT ^= BIT6;
+    }
+  }
+  // play song
+  else if (play_song && note < 43) {
     
     if (++count == time_until_change) {
       count = 0;
@@ -29,7 +45,6 @@ void __interrupt_vec(WDT_VECTOR) WDT() {
       if (make_noise) {
 	make_noise = 0;
 	buzzer_set_period(0);
-	//long delayAmount = (long)(100/notes[note]);
 	time_until_change = delay_time[delay++];
 	led_state(0,1);
 
@@ -50,13 +65,6 @@ void __interrupt_vec(WDT_VECTOR) WDT() {
     note = 0;
     buzzer_set_period(0);
   }
-
-  // dim led
-  if (dim_on) {
-    if (++count == 10) {
-      led_state(1, 0);
-      count = 0;
-    }
-  }
+  
 }
 

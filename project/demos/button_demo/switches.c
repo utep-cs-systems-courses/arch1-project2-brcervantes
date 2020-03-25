@@ -44,14 +44,14 @@ void switch_interrupt_handler()
   else if (sw2_down) {
     // play zelda melody
     reset_state();
-    play_song =1;
+    play_song = 1;
     led_update();
     
   }
 
   else if (sw3_down) {
-    led_update();
     dim_on = 1;
+    dim_led();
   }
 
   else if (sw4_down) {
