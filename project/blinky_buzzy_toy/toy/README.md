@@ -1,28 +1,13 @@
 ## Description
-This program uses interrupts to detect when a switch is pressed or
-released.
+This program uses interrupts and timers to switch between the functionallity of the top 4 buttons on the MSP430 board. Each button has a different function (from left to right on the MSP430 board);
 
-Press S1, and the green LED is illuminated.  Release it, and the red
-LED is illuminated instead.
+The 1st button when pressed will count to 3 in binary using the LEDS, upon each click of the button the count will be increased by 1 using the state_machine.c.
 
-## Exploration
-_LED toggle:_  A great initial project would be to modify this program to
-implement a state machine that "toggled" between the red and green LEDs
-each time the button is pressed. The LED should remain illuminated until
-the next time the button is pressed.
+The 2nd button when pressed will play the melody Windmill/Song of Storms from the Legend of Zelda. The song will repeat until the 4th button is pressed. When a note is being played the green LED is displayed, when there is no note playing the red LED is displayed.
 
-_Separation of duties:_ Input and output are not always so closely
-connected.  Frequently an input begins a computation that eventually
-results in an output. For example, pressing "next song" on a streaming
-audio player begins a complicated multi-stage process that eventually
-results in a different song being played.  Suggestion: start with
-something simple such as responding to the buttons using interrupts to
-set state variables, and update the LEDs when the timer interrupt
-occurs.  
+The 3rd button will alternate between fading the green LED and the red LED with each press.
 
-_Time and button interaction:_
-Integrate the timer mechanisms from the blink demo and have the button affect the blink sequence.
+The 4th and final button will reset the state of the first 3 buttons. It resets the LEDs and the buzzer.
 
-## Some Advice
-When creating your own variants to the demo programs,
-it's probably a good idea to keep a copy of the original program (or really understand how _git checkout_ works).  
+## How To Run
+To run the Blinky Buzzy Toy you must be in this directory to run the command **make load** 
