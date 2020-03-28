@@ -21,22 +21,8 @@ void __interrupt_vec(WDT_VECTOR) WDT() {
   static char make_noise = 0;
   static char time_until_change = 0;
 
-  // variables for fading light
-  static char pwm_counter = 0;
-  static char led_bright  = 0;
-  static char target      = 0;
-  static char timer       = 0;
-  static char fade        = 0;
-
-  if (dim_on){
-    P1OUT ^= BIT0;
-    if (++timer == 3000-1) {
-      timer = 0;
-      P1OUT ^= BIT6;
-    }
-  }
   // play song
-  else if (play_song && note < 43) {
+  if (play_song && note < 43) {
     
     if (++count == time_until_change) {
       count = 0;

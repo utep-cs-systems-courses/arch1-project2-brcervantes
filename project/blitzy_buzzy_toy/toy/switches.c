@@ -51,14 +51,17 @@ void switch_interrupt_handler()
   }
 
   else if (sw3_down) {
+    // dim and alternate both leds
     dim_on = 1;
-    //dim_led();
+    dim();
   }
 
   else if (sw4_down) {
     // turn off buzzer
+    // clear lights
     play_song = 0;
     reset_state();
     led_update();
+    dim_on = 0;
   }
 }
