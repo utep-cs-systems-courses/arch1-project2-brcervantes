@@ -7,6 +7,7 @@ state:
 	
 	.text
 jt:
+	.word default
 	.word state1
 	.word state2
 	.word state3
@@ -14,6 +15,8 @@ jt:
 	
 	.global	toggle
 toggle:
+	CMP #5, &state
+	JNC default
 
 	MOV &state, r12
 	ADD r12, r12
@@ -23,29 +26,35 @@ toggle:
 state1:
 	MOV.B	#0, &red_on	; red_on   = 0;
 	MOV.B	#0, &green_on   ; green_on = 0;
-	MOV.B	#1, &state	; state    = 1;
+	MOV.B	#2, &state	; state    = 1;
 	JMP	end
 
 ;; turns on the red led to represent the number 1 in binary
 state2:
 	MOV.B	#1, &red_on	; red_on   = 1;
 	MOV.B	#0, &green_on	; green_on = 0;
-	MOV.B	#2, &state	; state    = 2;
+	MOV.B	#3, &state	; state    = 2;
 	JMP	end
 
 ;; turns on the green led to represent the number 2 in binary 
 state3:
 	MOV.B	#0, &red_on	; red_on   = 0;
 	MOV.B	#1, &green_on 	; green_on = 1;
-	MOV.B	#3, &state	;state     = 3
+	MOV.B	#4, &state	;state     = 3
 	JMP	end
 
 ;; turns on both leds to represent the number 3 in binary
 state4:
 	MOV.B	#1, &red_on	;red_on   = 1;
 	MOV.B	#1, &green_on	;green_on = 1;
-	MOV.B	#0, &state	;state    = 0;
+	MOV.B	#1, &state	;state    = 0;
 	JMP	end
+
+default:
+	MOV.B	#0, &red_on
+	MOV.B	#0, &green_on
+	MOV.B	#1, &state
+	JMP     end
 end:	
 	
 	POP r0 ; return to program counter
